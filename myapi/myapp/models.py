@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class Guitar(models.Model):
+    brand = models.CharField(max_length=30)
+    price = models.IntegerField()
