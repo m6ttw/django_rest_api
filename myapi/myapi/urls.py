@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from myapp import views
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', views.index),
+    # path('guitar', views.add_guitar),
+    # path('<str:guitar_brand>', views.get_guitar),
 ]
