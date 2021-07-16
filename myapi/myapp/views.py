@@ -30,3 +30,11 @@ def guitar_detail(request, pk):
     guitars = Guitar.objects.get(id=pk)
     serializer = GuitarSerializer(guitars, many=False)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def guitar_create(request):
+    serializer = GuitarSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
