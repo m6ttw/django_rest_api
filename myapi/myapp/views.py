@@ -38,3 +38,17 @@ def guitar_create(request):
         serializer.save()
     return Response(serializer.data)
 
+@api_view(['POST'])
+def guitar_update(request, pk):
+    guitar = Guitar.objects.get(id=pk)
+    serializer = GuitarSerializer(instance=guitar, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def guitar_delete(request, pk):
+    guitar = Guitar.objects.get(id=pk)
+    guitar.delete()
+    return Response("Item deleted")
+

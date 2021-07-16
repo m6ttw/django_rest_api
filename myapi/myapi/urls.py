@@ -23,4 +23,6 @@ urlpatterns = [
     path('guitar-list/', views.guitar_list, name='guitar-list'),
     path('guitar-detail/<str:pk>/', views.guitar_detail, name='guitar-detail'),
     path('guitar-create/', views.guitar_create, name='guitar-create'),
+    path('guitar-update/<str:pk>/', views.guitar_update, name='guitar-update'),
+    path('guitar-delete/<str:pk>/', views.guitar_delete, name='guitar-delete'),
 ]
