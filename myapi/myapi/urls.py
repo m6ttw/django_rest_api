@@ -20,7 +20,7 @@ from myapp import views
 
 urlpatterns = [
     path('', views.index),
-    # path('guitars', views.get_all_guitars),
-    path('<str:guitar_name>', views.get_guitar),
+    # path('guitars', views.guitar_list),
+    # path('<str:guitar_name>', views.get_guitar),
     # path('guitar', views.add_guitar),
 ]
