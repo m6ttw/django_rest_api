@@ -19,8 +19,9 @@ from django.urls import path
 from myapp import views
 
 urlpatterns = [
-    path('', views.index),
-    # path('guitars', views.guitar_list),
+    path('', views.index, name='index'),
+    path('guitar-list', views.guitar_list, name='guitar-list'),
+    path('guitar-detail/<str:pk>', views.guitar_detail, name='guitar-detail'),
     # path('<str:guitar_name>', views.get_guitar),
     # path('guitar', views.add_guitar),
 ]

@@ -4,9 +4,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-# from django.views.decorators.csrf import csrf_exempt
-
-import json
+from .serializers import GuitarSerializer
 
 from myapp.models import Guitar
 
@@ -21,22 +19,14 @@ def index(request):
     }
     return Response(api_urls)
 
-# def guitar_list(request):
-#     if request.method == 'GET':
-#         try:
-#             guitars = Guitar.objects.all()
-#             guitar_list = list(guitars)
-#             response = json.dumps(guitar_list)
-#         except:
-#             response = json.dumps([{ 'Error': 'No guitars found'}])
-#     return HttpResponse(response, content_type='text/json')
+@api_view(['GET'])
+def guitar_list(request):
+    guitars = Guitar.objects.all()
+    serializer = GuitarSerializer(guitars, many=True)
+    return Response(serializer.data)
 
-
-# def get_guitar(request, guitar_name):
-#     if request.method == 'GET':
-#         try:
-#             guitar = Guitar.objects.get(name=guitar_name)
-#             response = json.dumps([{ 'Guitar': guitar.name, 'Price': guitar.price}])
-#         except:
-#             response = json.dumps([{ 'Error': 'No guitar with that name'}])
-#     return HttpResponse(response, content_type='text/json')
+@api_view(['GET'])
+def guitar_detail(request, pk):
+    guitars = Guitar.objects.get(id=pk)
+    serializer = GuitarSerializer(guitars, many=False)
+    return Response(serializer.data)
